@@ -4,24 +4,24 @@ import asyncio
 import timeit
 
 from _common import json_dumps
-from _secrets import AEMET_COORDS, AEMET_DATA_DIR, AEMET_OPTIONS
+from _secrets import METEOCAT_COORDS, METEOCAT_DATA_DIR, METEOCAT_OPTIONS
 import aiohttp
 
-from aemet_opendata.exceptions import ApiError, AuthError, TooManyRequests, TownNotFound
-from aemet_opendata.interface import AEMET
+from meteocatpy.exceptions import ApiError, AuthError, TooManyRequests, TownNotFound
+from meteocatpy.interface import METEOCAT
 
 
 async def main():
     """METEOCAT client example."""
 
     async with aiohttp.ClientSession() as aiohttp_session:
-        client = AEMET(aiohttp_session, AEMET_OPTIONS)
+        client = METEOCAT(aiohttp_session, METEOCAT_OPTIONS)
 
-        client.set_api_data_dir(AEMET_DATA_DIR)
+        client.set_api_data_dir(METEOCAT_DATA_DIR)
 
         try:
             select_start = timeit.default_timer()
-            await client.select_coordinates(AEMET_COORDS[0], AEMET_COORDS[1])
+            await client.select_coordinates(METEOCAT_COORDS[0], METEOCAT_COORDS[1])
             select_end = timeit.default_timer()
             print(json_dumps(client.data()))
             print(f"Select time: {select_end - select_start}")

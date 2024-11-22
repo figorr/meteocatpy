@@ -3,8 +3,8 @@
 import asyncio
 import timeit
 
-from _common import json_dumps
-from _secrets import METEOCAT_COORDS, METEOCAT_DATA_DIR, METEOCAT_OPTIONS
+from common import json_dumps
+from secrets import METEOCAT_COORDS, METEOCAT_DATA_DIR, METEOCAT_OPTIONS
 import aiohttp
 
 from meteocatpy.exceptions import ApiError, AuthError, TooManyRequests, TownNotFound

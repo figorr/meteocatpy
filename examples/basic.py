@@ -3,13 +3,12 @@
 import asyncio
 import timeit
 
-from common import json_dumps
-from secrets import METEOCAT_COORDS, METEOCAT_DATA_DIR, METEOCAT_OPTIONS
+from _common import json_dumps
+from _secrets import METEOCAT_COORDS, METEOCAT_DATA_DIR, METEOCAT_OPTIONS
 import aiohttp
 
 from meteocatpy.exceptions import ApiError, AuthError, TooManyRequests, TownNotFound
 from meteocatpy.interface import METEOCAT
-
 
 async def main():
     """METEOCAT client example."""

@@ -1,0 +1,16 @@
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .releaserc.toml
+├── AUTHORS.md
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── filetree.py
+└── meteocatpy/
+    ├── __init__.py
+    ├── version.py
+├── poetry.lock
+├── pyproject.toml
+├── requirements.test.txt
+├── setup.cfg
+├── setup.py

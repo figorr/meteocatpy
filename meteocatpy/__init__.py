@@ -1,6 +1,12 @@
-"""Python Package to collect data from Meteocat API and interact with Meteocat Home Assistant Integration
+"""METEOCATPY API.
+
+Python Package to collect data from Meteocat API and interact with Meteocat Home Assistant Integration
 SPDX-License-Identifier: Apache-2.0
 
 For more details about this api, please refer to the documentation at
-https://gitlab.com/keatontaylor/alexapy
+https://gitlab.com/figorr/meteocatpy
 """
+
+from .interface import METEOCAT
+
+__all__ = ["METEOCAT"]

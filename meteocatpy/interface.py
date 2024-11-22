@@ -67,8 +67,8 @@ from .const import (
     RAW_TOWNS,
 )
 from .exceptions import (
-    METEOCATError,
-    METEOCATTimeout,
+    MeteocatError,
+    MeteocatTimeout,
     ApiError,
     AuthError,
     StationNotFound,
@@ -181,9 +181,9 @@ class METEOCAT:
                     headers=self.headers,
                 )
             except asyncio.TimeoutError as err:
-                raise METEOCATTimeout(err) from err
+                raise MeteocatTimeout(err) from err
             except ClientError as err:
-                raise METEOCATError(err) from err
+                raise MeteocatError(err) from err
 
             cur_dt = get_current_datetime(replace=False)
 
@@ -205,7 +205,7 @@ class METEOCAT:
             if resp.status == 429:
                 raise TooManyRequests("Too many API requests")
             if resp.status != 200:
-                raise METEOCATError(f"API status={resp.status}")
+                raise MeteocatError(f"API status={resp.status}")
 
             try:
                 resp_json = await resp.json(content_type=None)
@@ -332,7 +332,7 @@ class METEOCAT:
             if resp.status == 429:
                 raise TooManyRequests("Too many API requests")
             if resp.status != 200:
-                raise METEOCATError(f"API status={resp.status}")
+                raise MeteocatError(f"API status={resp.status}")
 
             try:
                 if resp.content_type.startswith(CONTENT_TYPE_IMG):

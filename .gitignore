@@ -1,0 +1,49 @@
+# Entorno virtual
+.venv/
+
+# Variables de entorno
+.env
+
+# Archivos de configuración de Visual Studio Code
+.vscode/
+
+# Archivos de configuración de Git
+.git/
+
+# Archivos de bytecode de Python
+*.pyc
+__pycache__/
+meteocatpy/__pycache__/
+custom_components/meteocatpy/__pycache__/
+
+# Archivos de log
+*.log
+
+# Archivos de dist
+dist/
+
+# Local scripts
+semantic_print.py
+locations.py
+municipi.py
+update_version.py
+publish_version.py
+final_release.py
+
+# TEST VARIABLES .ENV
+test_dotenv.py
+
+# VERSIONS
+current_version.txt
+next_version.txt
+
+# GITLAB JOBS
+.gitlab-ci.yml
+
+# ASSETS
+meteocatpy/assets/
+custom_components/meteocatpy/assets/
+
+# FILES
+meteocatpy/files/
+custom_components/meteocatpy/files/

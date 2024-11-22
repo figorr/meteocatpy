@@ -1,4 +1,4 @@
-"""METEOCATPY API.
+"""METEOCAT API.
 
 Python Package to collect data from Meteocat API and interact with Meteocat Home Assistant Integration
 SPDX-License-Identifier: Apache-2.0

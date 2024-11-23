@@ -7,6 +7,7 @@ For more details about this api, please refer to the documentation at
 https://gitlab.com/figorr/meteocatpy
 """
 
-from .interface import METEOCAT
+# meteocatpy/__init__.py
+from .client import MeteocatClient
 
-__all__ = ["METEOCAT"]
+__all__ = ["MeteocatClient"]

@@ -24,6 +24,9 @@ dist/
 
 # Archivos tests
 tests/__pycache__/
+tests/files/municipis.json
+tests/files/predict_dia.json
+tests/files/predict_hora.json
 
 # Archivos de pytest
 .coverage

@@ -1,3 +1,5 @@
 """meteocatpy constants."""
 BASE_URL = "https://api.meteo.cat"
 MUNICIPIS_LIST_URL = "/referencia/v1/municipis"
+MUNICIPIS_HORA_URL = "/pronostic/v1/municipalHoraria/{codi}"
+MUNICIPIS_DIA_URL = "/pronostic/v1/municipal/{codi}"

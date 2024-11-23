@@ -21,6 +21,7 @@ aiofiles = "^24.1.0"
 voluptuous = "^0.15.2"
 geopy = "^2.4.1"
 tzdata = "^2024.2"
+aiohttp = "^3.11.7"
 
 
 [tool.semantic_release]
@@ -63,3 +64,6 @@ pipdeptree = "^2.2.1"
 [tool.poetry.group.dev.dependencies]
 pyupgrade = "^3.4.0"
 pre-commit = "^3.3.1"
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
+syrupy = "^4.7.2"

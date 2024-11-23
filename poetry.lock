@@ -2960,6 +2960,20 @@ standalone = ["Sphinx (>=5)"]
 test = ["pytest"]
 
 [[package]]
+name = "syrupy"
+version = "4.7.2"
+description = "Pytest Snapshot Test Utility"
+optional = false
+python-versions = ">=3.8.1"
+files = [
+    {file = "syrupy-4.7.2-py3-none-any.whl", hash = "sha256:eae7ba6be5aed190237caa93be288e97ca1eec5ca58760e4818972a10c4acc64"},
+    {file = "syrupy-4.7.2.tar.gz", hash = "sha256:ea45e099f242de1bb53018c238f408a5bb6c82007bc687aefcbeaa0e1c2e935a"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0,<9.0.0"
+
+[[package]]
 name = "tokenize-rt"
 version = "6.1.0"
 description = "A wrapper around the stdlib `tokenize` which roundtrips."
@@ -3233,4 +3247,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.7"
-content-hash = "b660830147d8e6e8e237d13fb7cf2741afaeb4d6c80244238a44068eb3874899"
+content-hash = "c5f5887d3b71851ef560db0e732c195f9ccdfddd28209a1af5716ab7ce47f211"

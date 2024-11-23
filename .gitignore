@@ -22,6 +22,12 @@ custom_components/meteocatpy/__pycache__/
 # Archivos de dist
 dist/
 
+# Archivos tests
+tests/__pycache__/
+
+# Archivos de pytest
+.coverage
+
 # Local scripts
 semantic_print.py
 locations.py

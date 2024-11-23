@@ -7,7 +7,7 @@ from meteocatpy.client import MeteocatClient
 load_dotenv()
 
 # Obtener los valores del archivo .env
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("METEOCAT_API_KEY")
 MUNICIPI_TEST = os.getenv("MUNICIPI_TEST")
 MUNICIPI_CODI_TEST = os.getenv("MUNICIPI_CODI_TEST")
 

@@ -1,5 +1,5 @@
 import aiohttp
-from .const import BASE_URL, MUNICIPIS_LIST_URL
+from .const import BASE_URL, MUNICIPIS_LIST_URL, MUNICIPIS_HORA_URL, MUNICIPIS_DIA_URL
 
 
 class MeteocatClient:
@@ -29,3 +29,36 @@ class MeteocatClient:
                     raise Exception(f"Error {response.status}: {await response.text()}")
                 return await response.json()
 
+    async def get_prediccion_horaria(self, codi: str):
+        """
+        Obtiene la predicción horaria a 72 horas para un municipio.
+
+        Args:
+            codi (str): Código del municipio.
+
+        Returns:
+            dict: Predicción horaria para el municipio.
+        """
+        url = f"{BASE_URL}{MUNICIPIS_HORA_URL.format(codi=codi)}"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=self.headers) as response:
+                if response.status != 200:
+                    raise Exception(f"Error {response.status}: {await response.text()}")
+                return await response.json()
+
+    async def get_prediccion_diaria(self, codi: str):
+        """
+        Obtiene la predicción diaria a 8 días para un municipio.
+
+        Args:
+            codi (str): Código del municipio.
+
+        Returns:
+            dict: Predicción diaria para el municipio.
+        """
+        url = f"{BASE_URL}{MUNICIPIS_DIA_URL.format(codi=codi)}"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=self.headers) as response:
+                if response.status != 200:
+                    raise Exception(f"Error {response.status}: {await response.text()}")
+                return await response.json()

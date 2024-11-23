@@ -5,9 +5,28 @@
 [![pipeline status](https://gitlab.com/figorr/meteocatpy/badges/master/pipeline.svg)](https://gitlab.com/figorr/meteocatpy/commits/master)
 
 
-This is a project to obtain meteorological data from the Meteocat API.
+`meteocatpy` is a Python package to interact with the Meteocat API. Allows you to obtain meteorological data and lists of municipalities from the Meteocat API.
 
 **NOTE:** Meteocat API requires to use an API_KEY, you should ask to (https://apidocs.meteocat.gencat.cat/documentacio/acces-ciutada-i-administracio/)
+
+# Installation
+
+You can install the package from PyPI using `pip`:
+```bash
+pip install meteocatpy
+```
+
+```bash
+from meteocatpy.client import MeteocatClient
+
+# Replace 'tu_api_key' with your actual API key
+api_key = "tu_api_key"
+client = MeteocatClient(api_key)
+
+# Get a list of municipalities (asynchronous call)
+municipis = await client.get_municipis()
+print(municipis)
+```
 
 # Credits
 
@@ -17,6 +36,8 @@ Authors:
 - Figorr
 
 # Contributing
+
+If you would like to contribute to this project, please open an issue or create a pull request. I'd be happy to review your contributions!
 
 1.  [Check for open features/bugs](https://gitlab.com/figorr/meteocatpy/issues)
     or [initiate a discussion on one](https://gitlab.com/figorr/meteocatpy/issues/new).

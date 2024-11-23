@@ -1,5 +1,6 @@
 import os
 import pytest
+import json
 from dotenv import load_dotenv
 from meteocatpy.client import MeteocatClient
 
@@ -24,9 +25,9 @@ async def test_municipis():
     # Obtener los municipios
     municipios_data = await client.get_municipis()
     
-    # Guardar los datos de los municipios en un archivo txt
-    with open('tests/files/municipis.txt', 'w', encoding='utf-8') as f:
-        f.write(str(municipios_data))
+    # Guardar los datos de los municipios en un archivo JSON
+    with open('tests/files/municipis.json', 'w', encoding='utf-8') as f:
+        json.dump(municipios_data, f, ensure_ascii=False, indent=4)
     
     # Verificar que los municipios no estén vacíos
     assert municipios_data, "Municipis data is empty"
@@ -36,31 +37,31 @@ async def test_municipis():
     assert MUNICIPI_TEST in municipi_names, f"{MUNICIPI_TEST} not found in municipis list"
 
 @pytest.mark.asyncio
-async def test_predict_hora():
+async def test_predict_horaria():
     # Crear una instancia de MeteocatClient con la API Key
     client = MeteocatClient(API_KEY)
 
     # Obtener la predicción horaria para el municipio de prueba
-    prediccion_hora = await client.get_prediccion_hora(MUNICIPI_CODI_TEST)
+    prediccion_hora = await client.get_prediccion_horaria(MUNICIPI_CODI_TEST)
     
-    # Guardar la predicción horaria en un archivo txt
-    with open('tests/files/predict_hora.txt', 'w', encoding='utf-8') as f:
-        f.write(str(prediccion_hora))
+    # Guardar la predicción horaria en un archivo JSON
+    with open('tests/files/predict_hora.json', 'w', encoding='utf-8') as f:
+        json.dump(prediccion_hora, f, ensure_ascii=False, indent=4)
     
     # Verificar que la predicción horaria no esté vacía
     assert prediccion_hora, "Prediccion horaria is empty"
 
 @pytest.mark.asyncio
-async def test_predict_dia():
+async def test_predict_diaria():
     # Crear una instancia de MeteocatClient con la API Key
     client = MeteocatClient(API_KEY)
 
     # Obtener la predicción diaria para el municipio de prueba
-    prediccion_dia = await client.get_prediccion_dia(MUNICIPI_CODI_TEST)
+    prediccion_dia = await client.get_prediccion_diaria(MUNICIPI_CODI_TEST)
     
-    # Guardar la predicción diaria en un archivo txt
-    with open('tests/files/predict_dia.txt', 'w', encoding='utf-8') as f:
-        f.write(str(prediccion_dia))
+    # Guardar la predicción diaria en un archivo JSON
+    with open('tests/files/predict_dia.json', 'w', encoding='utf-8') as f:
+        json.dump(prediccion_dia, f, ensure_ascii=False, indent=4)
     
     # Verificar que la predicción diaria no esté vacía
     assert prediccion_dia, "Prediccion diaria is empty"

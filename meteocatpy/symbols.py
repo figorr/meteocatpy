@@ -18,23 +18,27 @@ class MeteocatSymbols:
         self.symbols_map = {}
 
     async def fetch_symbols(self):
-        """
-        Descarga los datos de símbolos desde la API de Meteocat y los guarda en un diccionario.
-
-        Returns:
-            dict: Mapeo de códigos de símbolo a sus descripciones.
-        """
         url = f"{BASE_URL}{SYMBOLS_URL}"
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:
                         data = await response.json()
-                        # Convertimos los datos a un diccionario accesible
-                        self.symbols_map = {int(item["codi"]): item["nom"] for item in data["valors"]}
-                        return self.symbols_map
+                        print(data)  # Esto te mostrará la estructura completa en la consola
 
-                    # Gestionar errores según el código de estado
+                        # Asegurarse de que `data` sea una lista de categorías
+                        if isinstance(data, list):
+                            self.symbols_map = {}
+                            for category in data:
+                                if "valors" in category:
+                                    # Guardamos los valores de cada categoría
+                                    self.symbols_map[category["nom"]] = category["valors"]
+                            return data  # Devolvemos todo el conjunto de datos
+
+                        else:
+                            raise UnknownAPIError(f"Unexpected structure of data: {data}", status_code=response.status)
+
+                    # Gestionar errores de respuesta
                     if response.status == 400:
                         raise BadRequestError(await response.json())
                     elif response.status == 403:
@@ -48,22 +52,28 @@ class MeteocatSymbols:
                     elif response.status == 500:
                         raise InternalServerError(await response.json())
                     else:
-                        raise UnknownAPIError(f"Unexpected error {response.status}: {await response.text()}")
+                        raise UnknownAPIError(f"Unexpected error {response.status}: {await response.text()}", status_code=response.status)
 
             except aiohttp.ClientError as e:
-                raise UnknownAPIError(f"Error al conectar con la API de Meteocat: {str(e)}")
+                raise UnknownAPIError(f"Error al conectar con la API de Meteocat: {str(e)}", status_code=0)
 
             except Exception as ex:
-                raise UnknownAPIError(f"Error inesperado: {str(ex)}")
+                raise UnknownAPIError(f"Error inesperado: {str(ex)}", status_code=0)
 
-    def get_description(self, code: int) -> str:
+
+    def get_description(self, category: str, code: int) -> str:
         """
-        Obtiene la descripción de un código de símbolo.
+        Obtiene la descripción de un código de símbolo dentro de una categoría.
 
         Args:
+            category (str): Nombre de la categoría (e.g., "cel").
             code (int): Código del símbolo.
 
         Returns:
             str: Descripción del símbolo. Retorna 'Desconocido' si el código no está en el mapeo.
         """
-        return self.symbols_map.get(code, "Desconocido")
+        category_symbols = self.symbols_map.get(category, [])
+        for symbol in category_symbols:
+            if symbol["codi"] == str(code):  # El código es devuelto como string por la API
+                return symbol["descripcio"]
+        return "Desconocido"

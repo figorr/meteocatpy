@@ -17,14 +17,14 @@ pip install meteocatpy
 ```
 
 ```bash
-from meteocatpy.client import MeteocatClient
+from meteocatpy.town import MeteocatTown
 
 # Replace 'tu_api_key' with your actual API key
-api_key = "tu_api_key"
-client = MeteocatClient(api_key)
+API_KEY = "tu_api_key"
+town_client = MeteocatTown(API_KEY)
 
 # Get a list of municipalities (asynchronous call)
-municipis = await client.get_municipis()
+municipios_data = await town_client.get_municipis()
 print(municipis)
 ```
 

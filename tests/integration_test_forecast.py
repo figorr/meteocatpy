@@ -24,6 +24,9 @@ async def test_predict_horaria():
 
     # Obtener la predicción horaria para el municipio de prueba
     prediccion_hora = await forecast_client.get_prediccion_horaria(MUNICIPI_CODI_TEST)
+
+    # Crear la carpeta si no existe
+    os.makedirs('tests/files', exist_ok=True)
     
     # Guardar la predicción horaria en un archivo JSON
     with open('tests/files/predict_hora.json', 'w', encoding='utf-8') as f:
@@ -39,6 +42,9 @@ async def test_predict_diaria():
 
     # Obtener la predicción diaria para el municipio de prueba
     prediccion_dia = await forecast_client.get_prediccion_diaria(MUNICIPI_CODI_TEST)
+
+    # Crear la carpeta si no existe
+    os.makedirs('tests/files', exist_ok=True)
     
     # Guardar la predicción diaria en un archivo JSON
     with open('tests/files/predict_dia.json', 'w', encoding='utf-8') as f:

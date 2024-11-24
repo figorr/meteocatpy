@@ -20,6 +20,9 @@ async def test_municipis():
 
     # Obtener los municipios
     municipios_data = await town_client.get_municipis()
+
+    # Crear la carpeta si no existe
+    os.makedirs('tests/files', exist_ok=True)
     
     # Guardar los datos de los municipios en un archivo JSON
     with open('tests/files/municipis.json', 'w', encoding='utf-8') as f:

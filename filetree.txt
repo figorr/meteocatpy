@@ -6,6 +6,7 @@
 ├── LICENSE
 ├── README.md
 ├── filetree.py
+├── filetree.txt
 └── meteocatpy/
     ├── README.md
     ├── __init__.py
@@ -16,6 +17,7 @@
     ├── interface.py
     ├── py.typed
     ├── station.py
+    ├── symbols.py
     ├── town.py
     ├── version.py
 ├── poetry.lock
@@ -26,4 +28,5 @@
 └── tests/
     ├── integration_test_complete.py
     ├── integration_test_forecast.py
+    ├── integration_test_symbols.py
     ├── integration_test_town.py

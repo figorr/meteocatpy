@@ -62,3 +62,4 @@ class MeteocatClient:
                 if response.status != 200:
                     raise Exception(f"Error {response.status}: {await response.text()}")
                 return await response.json()
+

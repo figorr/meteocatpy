@@ -23,7 +23,6 @@ dist/
 
 # Archivos tests
 tests/__pycache__/
-tests/integration_test_client
 tests/files/municipis.json
 tests/files/predict_dia.json
 tests/files/predict_hora.json
@@ -54,3 +53,7 @@ meteocatpy/assets/
 
 # FILES
 meteocatpy/files/
+
+# CLIENT
+meteocatpy/client.py
+tests/integration_test_client

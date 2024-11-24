@@ -56,4 +56,4 @@ meteocatpy/files/
 
 # CLIENT
 meteocatpy/client.py
-tests/integration_test_client
+tests/integration_test_client.py

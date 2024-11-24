@@ -27,6 +27,15 @@ tests/files/municipis.json
 tests/files/predict_dia.json
 tests/files/predict_hora.json
 tests/files/simbols.json
+tests/files/simbols_acumulacio_de_neu.json
+tests/files/simbols_acumulacio_de_pluja.json
+tests/files/simbols_calamarsa.json
+tests/files/simbols_cel.json
+tests/files/simbols_intensitat.json
+tests/files/simbols_mar.json
+tests/files/simbols_precipitacio.json
+tests/files/simbols_tempesta.json
+tests/files/simbols_visibilitat.json
 
 # Archivos de pytest
 .coverage

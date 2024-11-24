@@ -14,7 +14,6 @@
 *.pyc
 __pycache__/
 meteocatpy/__pycache__/
-custom_components/meteocatpy/__pycache__/
 
 # Archivos de log
 *.log
@@ -52,8 +51,6 @@ next_version.txt
 
 # ASSETS
 meteocatpy/assets/
-custom_components/meteocatpy/assets/
 
 # FILES
 meteocatpy/files/
-custom_components/meteocatpy/files/

@@ -24,6 +24,7 @@ dist/
 
 # Archivos tests
 tests/__pycache__/
+tests/integration_test_client
 tests/files/municipis.json
 tests/files/predict_dia.json
 tests/files/predict_hora.json

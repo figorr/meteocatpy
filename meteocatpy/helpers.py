@@ -1,26 +1,12 @@
-"""METEOCAT Helpers."""
+"""Meteocat Helpers."""
 
-import base64
 from datetime import datetime
-import json
-import re
 from typing import Any
+import re
 import unicodedata
 from zoneinfo import ZoneInfo
 
-from .const import API_ID_PFX, CONTENT_TYPE_IMG
-
 TZ_UTC = ZoneInfo("UTC")
-
-
-class BytesEncoder(json.JSONEncoder):
-    """JSON Bytes Encoder class."""
-
-    def default(self, o: Any) -> Any:
-        """JSON default encoder function."""
-        if isinstance(o, bytes):
-            return base64.b64encode(o).decode("utf-8")
-        return super().default(o)
 
 
 def dict_nested_value(data: dict[str, Any] | None, keys: list[str] | None) -> Any:
@@ -41,37 +27,9 @@ def get_current_datetime(tz: ZoneInfo = TZ_UTC, replace: bool = True) -> datetim
     return cur_dt
 
 
-def split_coordinate(coordinate: str) -> str:
-    """Split climatological values station coordinate."""
-    coord_deg = coordinate[0:2]
-    coord_min = coordinate[2:4]
-    coord_sec = coordinate[4:6]
-    coord_dir = coordinate[6:7]
-    return f"{coord_deg} {coord_min}m {coord_sec}s {coord_dir}"
-
-
 def parse_api_timestamp(timestamp: str, tz: ZoneInfo = TZ_UTC) -> datetime:
-    """Parse METEOCAT timestamp into datetime."""
+    """Parse API timestamp into datetime."""
     return datetime.fromisoformat(timestamp).replace(tzinfo=tz)
-
-
-def parse_data_type_ext(data_type: str) -> str:
-    """Parse METEOCAT data type file extension."""
-    if data_type.startswith(CONTENT_TYPE_IMG):
-        return data_type.removeprefix(CONTENT_TYPE_IMG)
-    return ""
-
-
-def parse_station_coordinates(latitude: str, longitude: str) -> str:
-    """Parse climatological values station coordinates."""
-    return f"{split_coordinate(latitude)} {split_coordinate(longitude)}"
-
-
-def parse_town_code(town_id: str) -> str:
-    """Parse town code from ID if needed."""
-    if isinstance(town_id, str) and town_id.startswith(API_ID_PFX):
-        return town_id[len(API_ID_PFX) :]
-    return town_id
 
 
 def slugify(value: str, allow_unicode: bool = False) -> str:
@@ -86,10 +44,3 @@ def slugify(value: str, allow_unicode: bool = False) -> str:
         )
     value = re.sub(r"[^\w\s]", "-", value.lower())
     return re.sub(r"[-\s]+", "-", value).strip("-_")
-
-
-def timezone_from_coords(coords: tuple[float, float]) -> ZoneInfo:
-    """Convert coordinates to timezone."""
-    if coords[0] < 32 and coords[1] < -11.5:
-        return ZoneInfo("Atlantic/Canary")
-    return ZoneInfo("Europe/Madrid")

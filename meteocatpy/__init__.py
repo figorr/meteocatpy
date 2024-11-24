@@ -10,5 +10,6 @@ https://gitlab.com/figorr/meteocatpy
 # meteocatpy/__init__.py
 from .town import MeteocatTown
 from .forecast import MeteocatForecast
+from .symbols import MeteocatSymbols
 
-__all__ = ["MeteocatTown", "MeteocatForecast"]
+__all__ = ["MeteocatTown", "MeteocatForecast", "MeteocatSymbols"]

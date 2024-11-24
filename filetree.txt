@@ -1,0 +1,29 @@
+├── .gitignore
+├── .pre-commit-config.yaml
+├── .releaserc.toml
+├── AUTHORS.md
+├── CHANGELOG.md
+├── LICENSE
+├── README.md
+├── filetree.py
+└── meteocatpy/
+    ├── README.md
+    ├── __init__.py
+    ├── const.py
+    ├── exceptions.py
+    ├── forecast.py
+    ├── helpers.py
+    ├── interface.py
+    ├── py.typed
+    ├── station.py
+    ├── town.py
+    ├── version.py
+├── poetry.lock
+├── pyproject.toml
+├── requirements.test.txt
+├── setup.cfg
+├── setup.py
+└── tests/
+    ├── integration_test_complete.py
+    ├── integration_test_forecast.py
+    ├── integration_test_town.py

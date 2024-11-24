@@ -1,5 +1,6 @@
 import aiohttp
 from .const import BASE_URL, MUNICIPIS_HORA_URL, MUNICIPIS_DIA_URL
+from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, InternalServerError, UnknownAPIError
 
 class MeteocatForecast:
     """Clase para interactuar con las predicciones de la API de Meteocat."""
@@ -26,10 +27,32 @@ class MeteocatForecast:
         """
         url = f"{BASE_URL}{MUNICIPIS_HORA_URL.format(codi=codi)}"
         async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
-                if response.status != 200:
-                    raise Exception(f"Error {response.status}: {await response.text()}")
-                return await response.json()
+            try:
+                async with session.get(url, headers=self.headers) as response:
+                    if response.status == 200:
+                        return await response.json()
+
+                    # Gestionar errores según el código de estado
+                    if response.status == 400:
+                        raise BadRequestError(await response.json())
+                    elif response.status == 403:
+                        error_data = await response.json()
+                        if error_data.get("message") == "Forbidden":
+                            raise ForbiddenError(error_data)
+                        elif error_data.get("message") == "Missing Authentication Token":
+                            raise ForbiddenError(error_data)
+                    elif response.status == 429:
+                        raise TooManyRequestsError(await response.json())
+                    elif response.status == 500:
+                        raise InternalServerError(await response.json())
+                    else:
+                        raise UnknownAPIError(f"Unexpected error {response.status}: {await response.text()}")
+            
+            except aiohttp.ClientError as e:
+                raise UnknownAPIError(f"Error al conectar con la API de Meteocat: {str(e)}")
+
+            except Exception as ex:
+                raise UnknownAPIError(f"Error inesperado: {str(ex)}")
 
     async def get_prediccion_diaria(self, codi: str):
         """
@@ -43,7 +66,29 @@ class MeteocatForecast:
         """
         url = f"{BASE_URL}{MUNICIPIS_DIA_URL.format(codi=codi)}"
         async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
-                if response.status != 200:
-                    raise Exception(f"Error {response.status}: {await response.text()}")
-                return await response.json()
+            try:
+                async with session.get(url, headers=self.headers) as response:
+                    if response.status == 200:
+                        return await response.json()
+
+                    # Gestionar errores según el código de estado
+                    if response.status == 400:
+                        raise BadRequestError(await response.json())
+                    elif response.status == 403:
+                        error_data = await response.json()
+                        if error_data.get("message") == "Forbidden":
+                            raise ForbiddenError(error_data)
+                        elif error_data.get("message") == "Missing Authentication Token":
+                            raise ForbiddenError(error_data)
+                    elif response.status == 429:
+                        raise TooManyRequestsError(await response.json())
+                    elif response.status == 500:
+                        raise InternalServerError(await response.json())
+                    else:
+                        raise UnknownAPIError(f"Unexpected error {response.status}: {await response.text()}")
+            
+            except aiohttp.ClientError as e:
+                raise UnknownAPIError(f"Error al conectar con la API de Meteocat: {str(e)}")
+
+            except Exception as ex:
+                raise UnknownAPIError(f"Error inesperado: {str(ex)}")

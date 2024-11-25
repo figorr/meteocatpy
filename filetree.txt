@@ -33,3 +33,4 @@
     ├── integration_test_symbols.py
     ├── integration_test_town.py
     ├── integration_test_town_stations.py
+    ├── integration_test_variables.py

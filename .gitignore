@@ -36,6 +36,8 @@ tests/files/simbols_mar.json
 tests/files/simbols_precipitacio.json
 tests/files/simbols_tempesta.json
 tests/files/simbols_visibilitat.json
+tests/files/stations.json
+tests/files/stations_*.json
 
 # Archivos de pytest
 .coverage

@@ -1,11 +1,12 @@
 import aiohttp
+from .stations import MeteocatStations  # Importamos la clase MeteocatStations
 from .const import BASE_URL, STATIONS_MUNICIPI_URL
 from .exceptions import (
     BadRequestError,
     ForbiddenError,
     TooManyRequestsError,
     InternalServerError,
-    UnknownAPIError
+    UnknownAPIError,
 )
 
 class MeteocatTownStations:
@@ -23,26 +24,45 @@ class MeteocatTownStations:
         """
         self.api_key = api_key
         self.headers = {"X-Api-Key": self.api_key}
+        self.stations_service = MeteocatStations(api_key)  # Instancia de MeteocatStations
 
     async def get_town_stations(self, codi_municipi: str, codi_variable: str):
         """
-        Obtiene la lista de estaciones representativas para un municipio y una variable específica.
+        Obtiene la lista de estaciones representativas para un municipio y una variable específica,
+        enriqueciendo los datos con el nombre de las estaciones.
 
         Args:
             codi_municipi (str): Código del municipio.
             codi_variable (str): Código de la variable.
 
         Returns:
-            dict: Datos de las estaciones representativas.
+            list: Datos de las estaciones representativas con nombres añadidos.
         """
+        # Obtener la lista completa de estaciones
+        all_stations = await self.stations_service.get_stations()
+
+        # Crear un diccionario para acceder rápidamente a los nombres por código
+        station_names = {station["codi"]: station["nom"] for station in all_stations}
+
+        # URL para obtener las estaciones del municipio y la variable
         url = f"{BASE_URL}{STATIONS_MUNICIPI_URL}".format(
             codi_municipi=codi_municipi, codi_variable=codi_variable
         )
+
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:
-                        return await response.json()
+                        data = await response.json()
+
+                        # Enriquecer el JSON con los nombres de las estaciones
+                        for town in data:
+                            for variable in town.get("variables", []):
+                                for station in variable.get("estacions", []):
+                                    codi = station["codi"]
+                                    station["nom"] = station_names.get(codi, "Nombre desconocido")
+
+                        return data
 
                     # Gestionar errores según el código de estado
                     if response.status == 400:

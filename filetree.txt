@@ -16,9 +16,10 @@
     ├── helpers.py
     ├── interface.py
     ├── py.typed
-    ├── station.py
+    ├── stations.py
     ├── symbols.py
     ├── town.py
+    ├── townstations.py
     ├── version.py
 ├── poetry.lock
 ├── pyproject.toml
@@ -28,5 +29,7 @@
 └── tests/
     ├── integration_test_complete.py
     ├── integration_test_forecast.py
+    ├── integration_test_stations.py
     ├── integration_test_symbols.py
     ├── integration_test_town.py
+    ├── integration_test_town_stations.py

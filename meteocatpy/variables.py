@@ -46,7 +46,14 @@ class MeteocatVariables:
                         raise UnknownAPIError(f"Unexpected error {response.status}: {await response.text()}")
             
             except aiohttp.ClientError as e:
-                raise UnknownAPIError(f"Error al conectar con la API de Meteocat: {str(e)}")
+                raise UnknownAPIError(
+                    message=f"Error al conectar con la API de Meteocat: {str(e)}",
+                    status_code=0,
+                )
 
             except Exception as ex:
-                raise UnknownAPIError(f"Error inesperado: {str(ex)}")
+                raise UnknownAPIError(
+                    message=f"Error inesperado: {str(ex)}",
+                    status_code=0,
+                )
+

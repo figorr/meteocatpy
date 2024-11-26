@@ -27,7 +27,7 @@ async def test_stations_data():
     os.makedirs('tests/files', exist_ok=True)
     
     # Guardar los datos de las estaciones en un archivo JSON
-    with open('tests/files/station_data.json', 'w', encoding='utf-8') as f:
+    with open(f'tests/files/station_{STATION_CODI_TEST}_data.json', 'w', encoding='utf-8') as f:
         json.dump(station_data, f, ensure_ascii=False, indent=4)
     
     # Verificar que los datos no estén vacíos

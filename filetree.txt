@@ -15,7 +15,6 @@
     ├── exceptions.py
     ├── forecast.py
     ├── helpers.py
-    ├── interface.py
     ├── py.typed
     ├── stations.py
     ├── symbols.py
@@ -29,6 +28,7 @@
 ├── setup.cfg
 ├── setup.py
 └── tests/
+    ├── import_test.py
     ├── integration_test_complete.py
     ├── integration_test_forecast.py
     ├── integration_test_station_data.py

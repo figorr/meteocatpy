@@ -26,7 +26,7 @@ class MeteocatTownStations:
         self.headers = {"X-Api-Key": self.api_key}
         self.stations_service = MeteocatStations(api_key)  # Instancia de MeteocatStations
 
-    async def get_town_stations(self, codi_municipi: str, codi_variable: str):
+    async def get_town_stations(self, town_id: str, variable_id: str):
         """
         Obtiene la lista de estaciones representativas para un municipio y una variable específica,
         enriqueciendo los datos con el nombre de las estaciones.
@@ -46,7 +46,7 @@ class MeteocatTownStations:
 
         # URL para obtener las estaciones del municipio y la variable
         url = f"{BASE_URL}{STATIONS_MUNICIPI_URL}".format(
-            codi_municipi=codi_municipi, codi_variable=codi_variable
+            codi_municipi=town_id, codi_variable=variable_id
         )
 
         async with aiohttp.ClientSession() as session:

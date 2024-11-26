@@ -38,8 +38,8 @@ tests/files/simbols_tempesta.json
 tests/files/simbols_visibilitat.json
 tests/files/stations.json
 tests/files/stations_*.json
+tests/files/station_*.json
 tests/files/variables.json
-tests/files/station_data.json
 
 # Archivos de pytest
 .coverage

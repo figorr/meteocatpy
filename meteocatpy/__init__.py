@@ -11,5 +11,17 @@ https://gitlab.com/figorr/meteocatpy
 from .town import MeteocatTown
 from .forecast import MeteocatForecast
 from .symbols import MeteocatSymbols
+from .stations import MeteocatStations
+from .townstations import MeteocatTownStations
+from .data import MeteocatStationData
+from .variables import MeteocatVariables
 
-__all__ = ["MeteocatTown", "MeteocatForecast", "MeteocatSymbols"]
+__all__ = [
+    "MeteocatTown", 
+    "MeteocatForecast", 
+    "MeteocatSymbols", 
+    "MeteocatStations", 
+    "MeteocatTownStations", 
+    "MeteocatStationData", 
+    "MeteocatVariables"
+]

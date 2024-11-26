@@ -67,3 +67,6 @@ meteocatpy/assets/
 
 # FILES
 meteocatpy/files/
+
+# PY FILES
+meteocatpy/interface.py

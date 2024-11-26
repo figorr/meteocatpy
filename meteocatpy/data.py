@@ -27,7 +27,7 @@ class MeteocatStationData:
         now = datetime.now()
         return now.year, now.month, now.day
 
-    async def get_station_data(self, codiEstacio: str):
+    async def get_station_data(self, station_id: str):
         """
         Obtiene los datos meteorológicos para el código de estación y fecha actual.
 
@@ -37,9 +37,9 @@ class MeteocatStationData:
         Returns:
             dict: Datos meteorológicos de la estación para la fecha actual.
         """
-        any, mes, dia = self.get_current_date()  # Calcula la fecha actual
+        year, month, day = self.get_current_date()  # Calcula la fecha actual
         url = f"{BASE_URL}{STATION_DATA_URL}".format(
-            codiEstacio=codiEstacio, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+            codiEstacio=station_id, any=year, mes=f"{month:02d}", dia=f"{day:02d}"
         )
 
         async with aiohttp.ClientSession() as session:

@@ -15,7 +15,7 @@ class MeteocatForecast:
         self.api_key = api_key
         self.headers = {"X-Api-Key": self.api_key}
 
-    async def get_prediccion_horaria(self, codi: str):
+    async def get_prediccion_horaria(self, town_id: str):
         """
         Obtiene la predicción horaria a 72 horas para un municipio.
 
@@ -25,7 +25,7 @@ class MeteocatForecast:
         Returns:
             dict: Predicción horaria para el municipio.
         """
-        url = f"{BASE_URL}{MUNICIPIS_HORA_URL.format(codi=codi)}"
+        url = f"{BASE_URL}{MUNICIPIS_HORA_URL.format(codi=town_id)}"
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
@@ -61,7 +61,7 @@ class MeteocatForecast:
                 )
 
 
-    async def get_prediccion_diaria(self, codi: str):
+    async def get_prediccion_diaria(self, town_id: str):
         """
         Obtiene la predicción diaria a 8 días para un municipio.
 
@@ -71,7 +71,7 @@ class MeteocatForecast:
         Returns:
             dict: Predicción diaria para el municipio.
         """
-        url = f"{BASE_URL}{MUNICIPIS_DIA_URL.format(codi=codi)}"
+        url = f"{BASE_URL}{MUNICIPIS_DIA_URL.format(codi=town_id)}"
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:

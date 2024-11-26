@@ -60,7 +60,7 @@ current_version.txt
 next_version.txt
 
 # GITLAB JOBS
-.gitlab-ci.yml
+# .gitlab-ci.yml
 
 # ASSETS
 meteocatpy/assets/

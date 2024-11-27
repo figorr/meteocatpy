@@ -5,6 +5,24 @@
 
 ### Bug Fixes
 
+- Version 0.0.3
+  ([`3be4659`](https://github.com/figorr/meteocatpy/commit/3be4659a5df47b942f3d24594dc1140eecb65388))
+
+- Version 0.0.3
+  ([`987d7c8`](https://github.com/figorr/meteocatpy/commit/987d7c89f770f11aa37267815b799dd90d6230be))
+
+- Fix version 0.0.3
+  ([`6caaa46`](https://github.com/figorr/meteocatpy/commit/6caaa460dbee29f10a8566e0925ceddb94e4167e))
+
+- Version to 0.0.2
+  ([`0d47a4c`](https://github.com/figorr/meteocatpy/commit/0d47a4c1d8f64d0f6b32a79b909cda79ef236825))
+
+- 0.0.1
+  ([`a840913`](https://github.com/figorr/meteocatpy/commit/a840913c7cab075bf7b242ecbf0c93c0471f27f1))
+
+- Fix version to 0.0.2
+  ([`9c1b294`](https://github.com/figorr/meteocatpy/commit/9c1b294faa060988ecf41fbebcb01345ec940dce))
+
 - 0.0.1
   ([`304baee`](https://github.com/figorr/meteocatpy/commit/304baeef7d988b3d38a39a2064230ccf3e34e5b5))
 

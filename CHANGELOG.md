@@ -1,9 +1,18 @@
 # CHANGELOG
 
 
-## v0.0.1 (2024-11-26)
+## v0.0.1 (2024-11-27)
 
 ### Bug Fixes
+
+- 0.0.1
+  ([`304baee`](https://github.com/figorr/meteocatpy/commit/304baeef7d988b3d38a39a2064230ccf3e34e5b5))
+
+- Version 0.0.2
+  ([`94fe6d1`](https://github.com/figorr/meteocatpy/commit/94fe6d1c6637c69d38eaec6b86463e260d1faf7f))
+
+- Python 3.12
+  ([`3b41f89`](https://github.com/figorr/meteocatpy/commit/3b41f895150a335f9cce7df3932d162bd8a6ed2e))
 
 - 0.0.1
   ([`21b136e`](https://github.com/figorr/meteocatpy/commit/21b136e53b20484ca451b8ae7ea346723e343cd0))

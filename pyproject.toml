@@ -22,6 +22,7 @@ voluptuous = "^0.15.2"
 geopy = "^2.4.1"
 tzdata = "^2024.2"
 aiohttp = ">=3.10.11,<4.0.0"
+diskcache = "^5.6.3"
 
 
 [tool.semantic_release]

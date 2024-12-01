@@ -1,9 +1,12 @@
 import aiohttp
+from diskcache import Cache
 from .const import BASE_URL, VARIABLES_URL
 from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, InternalServerError, UnknownAPIError
 
 class MeteocatVariables:
     """Clase para interactuar con la lista de variables de la API de Meteocat."""
+
+    _cache = Cache(".meteocat_cache")  # Directorio donde se guardará la caché
 
     def __init__(self, api_key: str):
         """
@@ -15,19 +18,29 @@ class MeteocatVariables:
         self.api_key = api_key
         self.headers = {"X-Api-Key": self.api_key}
 
-    async def get_variables(self):
+    async def get_variables(self, force_update=False):
         """
-        Obtiene la lista de variables desde la API de Meteocat.
+        Obtiene la lista de variables desde la API de Meteocat. Usa la caché si está disponible.
+
+        Args:
+            force_update (bool): Si es True, fuerza la actualización desde la API.
 
         Returns:
-            dict: Datos de las variables.
+            list: Datos de las variables.
         """
+        # Verificar si las variables están en caché y no se solicita actualización forzada
+        if not force_update and "variables" in self._cache:
+            return self._cache["variables"]
+
+        # Hacer la solicitud a la API para obtener las variables
         url = f"{BASE_URL}{VARIABLES_URL}"
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:
-                        return await response.json()
+                        variables = await response.json()
+                        self._cache["variables"] = variables  # Guardar en caché
+                        return variables
 
                     # Gestionar errores según el código de estado
                     if response.status == 400:
@@ -56,4 +69,3 @@ class MeteocatVariables:
                     message=f"Error inesperado: {str(ex)}",
                     status_code=0,
                 )
-

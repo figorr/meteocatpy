@@ -1,4 +1,5 @@
 import aiohttp
+from datetime import datetime
 from .variables import MeteocatVariables
 from .const import BASE_URL, STATION_DATA_URL
 from .exceptions import (
@@ -23,6 +24,17 @@ class MeteocatStationData:
         self.api_key = api_key
         self.headers = {"X-Api-Key": self.api_key}
         self.variables = MeteocatVariables(api_key)
+    
+    @staticmethod
+    def get_current_date():
+        """
+        Obtiene la fecha actual en formato numérico.
+
+        Returns:
+            tuple: Año (YYYY), mes (MM), día (DD) como enteros.
+        """
+        now = datetime.now()
+        return now.year, now.month, now.day
 
     async def get_station_data(self, station_id: str):
         """
@@ -34,7 +46,11 @@ class MeteocatStationData:
         Returns:
             dict: Datos meteorológicos de la estación.
         """
-        url = f"{BASE_URL}{STATION_DATA_URL}/{station_id}"
+        any, mes, dia = self.get_current_date()  # Calcula la fecha actual
+        url = f"{BASE_URL}{STATION_DATA_URL}".format(
+            codiEstacio=station_id, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+        )
+    
         async with aiohttp.ClientSession() as session:
             try:
                 async with session.get(url, headers=self.headers) as response:

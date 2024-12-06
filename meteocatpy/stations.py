@@ -20,7 +20,10 @@ class MeteocatStations:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
-        self.headers = {"X-Api-Key": self.api_key}
+        self.headers = {
+            "Content-Type": "application/json",
+            "X-Api-Key": self.api_key,
+        }
 
     async def get_stations(self):
         """

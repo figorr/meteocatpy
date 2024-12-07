@@ -74,3 +74,6 @@ meteocatpy/interface.py
 
 # METEOCAT CACHE
 .meteocat_cache/
+
+# NODE_MODULES
+node_modules/

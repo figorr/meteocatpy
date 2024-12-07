@@ -1,5 +1,10 @@
+└── .github/
+    └── workflows/
+        ├── release.yml
 ├── .gitignore
+├── .gitlab-ci.yml
 ├── .pre-commit-config.yaml
+├── .releaserc
 ├── .releaserc.toml
 ├── AUTHORS.md
 ├── CHANGELOG.md
@@ -22,12 +27,16 @@
     ├── townstations.py
     ├── variables.py
     ├── version.py
+├── package-lock.json
+├── package.json
 ├── poetry.lock
 ├── pyproject.toml
+├── releaserc.json
 ├── requirements.test.txt
 ├── setup.cfg
 ├── setup.py
 └── tests/
+    ├── data_test.py
     ├── import_test.py
     ├── integration_test_complete.py
     ├── integration_test_forecast.py

@@ -1,4 +1,5 @@
 import aiohttp
+import logging
 from datetime import datetime
 from .variables import MeteocatVariables
 from .const import BASE_URL, STATION_DATA_URL
@@ -10,6 +11,7 @@ from .exceptions import (
     UnknownAPIError,
 )
 
+_LOGGER = logging.getLogger(__name__)
 
 class MeteocatStationData:
     """Clase para interactuar con los datos de estaciones de la API de Meteocat."""
@@ -104,26 +106,35 @@ class MeteocatStationData:
         # Obtener datos de la estación
         station_data = await self.get_station_data(station_id)
 
+        # Registrar la respuesta para depuración
+        _LOGGER.debug("Datos de la estación (crudos): %s", station_data)
+
         # Obtener las variables desde el caché o API
         variables = await self.variables.get_variables(force_update=force_update)
 
         # Crear una estructura para organizar los datos por variables
         datos_por_variable = {}
 
-        for lectura in station_data.get("lectures", []):
-            codi_variable = lectura.get("codi_variable")
-            variable_info = next((v for v in variables if v["codi"] == codi_variable), None)
-            if variable_info:
-                nombre_variable = variable_info["nom"]
-                if nombre_variable not in datos_por_variable:
-                    datos_por_variable[nombre_variable] = []
-                datos_por_variable[nombre_variable].append(
-                    {
-                        "data": lectura["data"],
-                        "valor": lectura["valor"],
-                        "estat": lectura.get("estat", ""),
-                        "base_horaria": lectura.get("base_horaria", ""),
-                    }
-                )
+        # Recorrer cada estación en los datos devueltos
+        for estacion in station_data:
+            # Recorrer cada variable dentro de la estación
+            for variable in estacion.get("variables", []):
+                codi_variable = variable.get("codi")
+                variable_info = next((v for v in variables if v["codi"] == codi_variable), None)
+                if variable_info:
+                    nombre_variable = variable_info["nom"]
+                    if nombre_variable not in datos_por_variable:
+                        datos_por_variable[nombre_variable] = []
+
+                    # Agregar las lecturas de la variable
+                    for lectura in variable.get("lectures", []):
+                        datos_por_variable[nombre_variable].append(
+                            {
+                                "data": lectura["data"],
+                                "valor": lectura["valor"],
+                                "estat": lectura.get("estat", ""),
+                                "base_horaria": lectura.get("baseHoraria", ""),
+                            }
+                        )
 
         return datos_por_variable

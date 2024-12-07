@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Configurar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Paso 2: Configurar Node.js (requerido para semantic-release)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.8.1 # Versión compatible con semantic-release
+
+      # Paso 3: Instalar dependencias necesarias
+      - name: Install dependencies
+        run: npm ci
+
+      # Paso 4: Ejecutar semantic-release
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_WORKFLOW }}
+        run: npx semantic-release

@@ -1,3 +1,19 @@
+## [0.0.7](https://github.com/figorr/meteocatpy/compare/v0.0.6...v0.0.7) (2024-12-07)
+
+
+### Bug Fixes
+
+* 0.0.7 ([7908841](https://github.com/figorr/meteocatpy/commit/7908841eee0b00b563b6b6266f4a6b71bc503ef2))
+* add github jobs ([d61a1e8](https://github.com/figorr/meteocatpy/commit/d61a1e846a5a34b505ca4520e68152bac21ace23))
+* add semantic-release ([cbecdd0](https://github.com/figorr/meteocatpy/commit/cbecdd05eade74445d5458100c3c42f2eaff4506))
+* CHANGELOG.md ([6cd6655](https://github.com/figorr/meteocatpy/commit/6cd665549663377ac4a73a20c6e5d4b8f6f859b9))
+* delete meteocat_cache ([05371e8](https://github.com/figorr/meteocatpy/commit/05371e8aa53365d5bbc027d1658e154957e225fe))
+* fix Content-Type : application.json for headers ([a79bb1c](https://github.com/figorr/meteocatpy/commit/a79bb1ced0a1f2def294b5964840ea938c469d57))
+* fix data recovery data ([fc93719](https://github.com/figorr/meteocatpy/commit/fc93719d7d601810771bd89dcd8715686843f836))
+* fix gitlab jobs ([7ee5b57](https://github.com/figorr/meteocatpy/commit/7ee5b5714e27b3f9031d5b9b81fe100e1064f0da))
+* ignore node_modules ([8b7f87c](https://github.com/figorr/meteocatpy/commit/8b7f87c5bf6b08211925824fd02dd0fdbbfced9b))
+* ignore pytest_cache ([99e99ba](https://github.com/figorr/meteocatpy/commit/99e99baf9a79529e63a0db47c76c7b150432f566))
+* new repo file structure ([bd7e438](https://github.com/figorr/meteocatpy/commit/bd7e438040255ddbcc375fd67469704a83bf5dfe))
 
 ## v0.0.1 (2024-11-27)
 

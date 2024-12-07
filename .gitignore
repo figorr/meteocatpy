@@ -70,3 +70,6 @@ meteocatpy/files/
 
 # PY FILES
 meteocatpy/interface.py
+
+# METEOCAT CACHE
+.meteocat_cache/

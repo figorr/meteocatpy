@@ -1,3 +1,11 @@
+## [0.0.8](https://github.com/figorr/meteocatpy/compare/v0.0.7...v0.0.8) (2024-12-08)
+
+
+### Bug Fixes
+
+* 0.0.8 ([ae21e62](https://github.com/figorr/meteocatpy/commit/ae21e62c88b1ea20b94d5feb6eb8f5dfa07de509))
+* fix json data ([91df89c](https://github.com/figorr/meteocatpy/commit/91df89c9746588e20a2073770313de20fa8dd64b))
+
 ## [0.0.7](https://github.com/figorr/meteocatpy/compare/v0.0.6...v0.0.7) (2024-12-07)
 
 

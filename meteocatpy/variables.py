@@ -1,12 +1,11 @@
 import aiohttp
 from diskcache import Cache
+import os
 from .const import BASE_URL, VARIABLES_URL
 from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, InternalServerError, UnknownAPIError
 
 class MeteocatVariables:
     """Clase para interactuar con la lista de variables de la API de Meteocat."""
-
-    _cache = Cache(".meteocat_cache")  # Directorio donde se guardará la caché
 
     def __init__(self, api_key: str):
         """
@@ -20,6 +19,13 @@ class MeteocatVariables:
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
         }
+
+        # Establecer la ruta absoluta a la carpeta de caché en custom_components/meteocat/.meteocat_cache
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Subir dos niveles desde meteocatpy
+        self._cache_dir = os.path.join(base_dir, "custom_components", "meteocat", ".meteocat_cache")
+
+        # Crear la instancia de caché
+        self._cache = Cache(self._cache_dir)
 
     async def get_variables(self, force_update=False):
         """

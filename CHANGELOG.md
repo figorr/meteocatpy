@@ -1,3 +1,11 @@
+## [0.0.9](https://github.com/figorr/meteocatpy/compare/v0.0.8...v0.0.9) (2024-12-09)
+
+
+### Bug Fixes
+
+* 0.0.9 ([0cf6bf8](https://github.com/figorr/meteocatpy/commit/0cf6bf888c572c3477a1385a06a753fc0096fc95))
+* fix cache dir ([3cafd2f](https://github.com/figorr/meteocatpy/commit/3cafd2fb0ec2fcdf9d94cf3adb3fcb264aabeb9e))
+
 ## [0.0.8](https://github.com/figorr/meteocatpy/compare/v0.0.7...v0.0.8) (2024-12-08)
 
 

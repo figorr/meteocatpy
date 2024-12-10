@@ -7,7 +7,7 @@ from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, I
 class MeteocatVariables:
     """Clase para interactuar con la lista de variables de la API de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, cache_dir: str = None):
         """
         Inicializa la clase MeteocatVariables.
 
@@ -20,11 +20,8 @@ class MeteocatVariables:
             "X-Api-Key": self.api_key,
         }
 
-        # Establecer la ruta absoluta a la carpeta de caché en custom_components/meteocat/.meteocat_cache
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Subir dos niveles desde meteocatpy
-        self._cache_dir = os.path.join(base_dir, "custom_components", "meteocat", ".meteocat_cache")
-
-        # Crear la instancia de caché
+        # Configurar la ruta de caché
+        self._cache_dir = cache_dir or ".meteocat_cache"
         self._cache = Cache(self._cache_dir)
 
     async def get_variables(self, force_update=False):

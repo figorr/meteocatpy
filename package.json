@@ -1,6 +1,6 @@
 {
   "name": "meteocatpy",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)\r [![Python version compatibility](https://img.shields.io/pypi/pyversions/meteocatpy)](https://pypi.org/project/meteocatpy)\r [![pipeline status](https://gitlab.com/figorr/meteocatpy/badges/master/pipeline.svg)](https://gitlab.com/figorr/meteocatpy/commits/master)",
   "main": "index.js",
   "directories": {

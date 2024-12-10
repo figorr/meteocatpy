@@ -1,3 +1,14 @@
+## [0.0.10](https://github.com/figorr/meteocatpy/compare/v0.0.9...v0.0.10) (2024-12-10)
+
+
+### Bug Fixes
+
+* 0.0.10 ([93301e8](https://github.com/figorr/meteocatpy/commit/93301e82667ec85c79966da8a2b637c4d85e1b6a))
+* 0.0.11 ([4e1d638](https://github.com/figorr/meteocatpy/commit/4e1d6387200fb6cde2d06c448c178b108bbb2b92))
+* fix cache dir ([5c1d435](https://github.com/figorr/meteocatpy/commit/5c1d435f2310f3d0b33538f823efe64c0f3797b4))
+* fix poetry lock ([25f32b1](https://github.com/figorr/meteocatpy/commit/25f32b1cd078ee60ab877d99fe444ccfce116f42))
+* python 3.13 ([99390f4](https://github.com/figorr/meteocatpy/commit/99390f4745c803b9623255b39c29edf61dacfcf9))
+
 ## [0.0.9](https://github.com/figorr/meteocatpy/compare/v0.0.8...v0.0.9) (2024-12-09)
 
 

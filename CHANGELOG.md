@@ -1,3 +1,11 @@
+## [0.0.13](https://github.com/figorr/meteocatpy/compare/v0.0.12...v0.0.13) (2024-12-11)
+
+
+### Bug Fixes
+
+* 0.0.13 ([1bdf3e7](https://github.com/figorr/meteocatpy/commit/1bdf3e7632156c0f033b483ac0ab5f159ed65be4))
+* fix cache dir ([6303383](https://github.com/figorr/meteocatpy/commit/6303383e7cbf2efad27d288adf89c6ea58dbc9c4))
+
 ## [0.0.12](https://github.com/figorr/meteocatpy/compare/v0.0.11...v0.0.12) (2024-12-11)
 
 

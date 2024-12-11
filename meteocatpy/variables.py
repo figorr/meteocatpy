@@ -21,7 +21,7 @@ class MeteocatVariables:
         }
 
         # Configurar la ruta de caché
-        self._cache_dir = cache_dir or os.path.join("custom_components", "meteocat", ".meteocat_cache")
+        self._cache_dir = os.path.join("custom_components", "meteocat", ".meteocat_cache")
         self._cache = Cache(self._cache_dir)
 
     async def get_variables(self, force_update=False):

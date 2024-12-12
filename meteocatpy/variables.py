@@ -7,7 +7,7 @@ from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, I
 class MeteocatVariables:
     """Clase para interactuar con la lista de variables de la API de Meteocat."""
 
-    def __init__(self, api_key: str, cache_dir: str = None):
+    def __init__(self, api_key: str):
         """
         Inicializa la clase MeteocatVariables.
 
@@ -20,23 +20,13 @@ class MeteocatVariables:
             "X-Api-Key": self.api_key,
         }
 
-        # Configurar la ruta de caché
-        self._cache_dir = os.path.join("custom_components", "meteocat", ".meteocat_cache")
-        self._cache = Cache(self._cache_dir)
-
-    async def get_variables(self, force_update=False):
+    async def get_variables(self):
         """
-        Obtiene la lista de variables desde la API de Meteocat. Usa la caché si está disponible.
-
-        Args:
-            force_update (bool): Si es True, fuerza la actualización desde la API.
+        Obtiene la lista de variables desde la API de Meteocat.
 
         Returns:
             list: Datos de las variables.
         """
-        # Verificar si las variables están en caché y no se solicita actualización forzada
-        if not force_update and "variables" in self._cache:
-            return self._cache["variables"]
 
         # Hacer la solicitud a la API para obtener las variables
         url = f"{BASE_URL}{VARIABLES_URL}"
@@ -45,7 +35,6 @@ class MeteocatVariables:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:
                         variables = await response.json()
-                        self._cache["variables"] = variables  # Guardar en caché
                         return variables
 
                     # Gestionar errores según el código de estado

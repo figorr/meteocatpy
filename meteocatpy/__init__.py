@@ -15,6 +15,7 @@ from .stations import MeteocatStations
 from .townstations import MeteocatTownStations
 from .data import MeteocatStationData
 from .variables import MeteocatVariables
+from .uvi import MeteocatUviData
 
 __all__ = [
     "MeteocatTown", 
@@ -23,5 +24,6 @@ __all__ = [
     "MeteocatStations", 
     "MeteocatTownStations", 
     "MeteocatStationData", 
-    "MeteocatVariables"
+    "MeteocatVariables",
+    "MeteocatUviData"
 ]

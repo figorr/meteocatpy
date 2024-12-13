@@ -1,3 +1,14 @@
+## [0.0.15](https://github.com/figorr/meteocatpy/compare/v0.0.14...v0.0.15) (2024-12-13)
+
+
+### Bug Fixes
+
+* 0.0.15 ([e4362bf](https://github.com/figorr/meteocatpy/commit/e4362bf9830c8eb5f9aa6fd803d06bf6bb64c2c8))
+* add MeteocatUviData ([49807fe](https://github.com/figorr/meteocatpy/commit/49807fe195098db59a654d015942352cb3705b93))
+* add MeteocatUviData class ([16e5eaf](https://github.com/figorr/meteocatpy/commit/16e5eaf7c918c673ab4648d1c3194144605d3249))
+* add uvi url ([b6a42c5](https://github.com/figorr/meteocatpy/commit/b6a42c5f2bc405359c49c7c5f106d576f5c70d9e))
+* ignore uvi test json ([4df4501](https://github.com/figorr/meteocatpy/commit/4df450166c4d01b67e096a754506d6d939ba09a5))
+
 ## [0.0.14](https://github.com/figorr/meteocatpy/compare/v0.0.13...v0.0.14) (2024-12-12)
 
 

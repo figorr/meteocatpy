@@ -41,7 +41,7 @@ tests/files/stations.json
 tests/files/stations_*.json
 tests/files/station_*.json
 tests/files/variables.json
-tests/files/uvi_index_*.json
+tests/files/uvi_*.json
 
 # Archivos de pytest
 .coverage

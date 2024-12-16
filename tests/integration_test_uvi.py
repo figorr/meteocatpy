@@ -8,7 +8,7 @@ from meteocatpy.uvi import MeteocatUviData
 load_dotenv()
 
 # Obtener los valores del archivo .env
-API_KEY = os.getenv("METEOCAT_API_KEY")
+API_KEY = os.getenv("METEOCAT_API_KEY_TEST")
 MUNICIPI_CODI_TEST = os.getenv("MUNICIPI_CODI_TEST")
 
 # Asegúrate de que las variables estén definidas

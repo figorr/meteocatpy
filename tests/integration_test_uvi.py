@@ -27,7 +27,7 @@ async def test_municipis():
     os.makedirs('tests/files', exist_ok=True)
     
     # Guardar los datos del índice UVI en un archivo JSON
-    with open(f'tests/files/uvi_index_{MUNICIPI_CODI_TEST}.json', 'w', encoding='utf-8') as f:
+    with open(f'tests/files/uvi_{MUNICIPI_CODI_TEST}_data.json', 'w', encoding='utf-8') as f:
         json.dump(uvi_data, f, ensure_ascii=False, indent=4)
     
     # Verificar que los datos del índice UVI no estén vacíos

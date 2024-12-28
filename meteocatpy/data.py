@@ -1,5 +1,6 @@
 import aiohttp
 import logging
+import re
 from datetime import datetime
 from .variables import MeteocatVariables
 from .const import BASE_URL, STATION_DATA_URL
@@ -64,6 +65,23 @@ class MeteocatStationData:
 
                     # Gestionar errores según el código de estado
                     if response.status == 400:
+                        error_data = await response.json()
+                        # Intentar extraer la última fecha válida del mensaje de error
+                        if "message" in error_data:
+                            match = re.search(r'entre (\d{2}-\d{2}-\d{4}) i', error_data["message"])
+                            if match:
+                                last_valid_date = match.group(1)  # Captura la última fecha válida
+                                dia, mes, any = map(int, last_valid_date.split('-'))
+                                # Intentar nuevamente con la última fecha válida
+                                new_url = f"{BASE_URL}{STATION_DATA_URL}".format(
+                                    codiEstacio=station_id, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+                                )
+                                async with session.get(new_url, headers=self.headers) as new_response:
+                                    if new_response.status == 200:
+                                        return await new_response.json()
+                                    raise UnknownAPIError(
+                                        f"Failed with the valid date {last_valid_date}: {await new_response.text()}"
+                                    )
                         raise BadRequestError(await response.json())
                     elif response.status == 403:
                         error_data = await response.json()

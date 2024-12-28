@@ -1,3 +1,14 @@
+## [0.0.16](https://github.com/figorr/meteocatpy/compare/v0.0.15...v0.0.16) (2024-12-28)
+
+
+### Bug Fixes
+
+* 0.0.16 ([a59edbc](https://github.com/figorr/meteocatpy/commit/a59edbcff6297346113b411405122b9fe6e9fe14))
+* fix installation at README ([15e4651](https://github.com/figorr/meteocatpy/commit/15e46517254c0f9bdd82adf8038a17ae6e4339d5))
+* ignore uvi test json file ([87189ce](https://github.com/figorr/meteocatpy/commit/87189cea76510a75fa41c015aa522075ba71d19f))
+* improve data recovery when invalid date ([3b72e7e](https://github.com/figorr/meteocatpy/commit/3b72e7e1aeb34485e1226c56f2b6cce385b19f38))
+* json file name ([6e97de1](https://github.com/figorr/meteocatpy/commit/6e97de1d585c17936b316eb1fcc1b5ac2b5275d9))
+
 ## [0.0.15](https://github.com/figorr/meteocatpy/compare/v0.0.14...v0.0.15) (2024-12-13)
 
 

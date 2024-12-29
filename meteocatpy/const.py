@@ -11,3 +11,4 @@ STATIONS_MUNICIPI_URL = "/xema/v1/representatives/metadades/municipis/{codi_muni
 VARIABLES_URL = "/xema/v1/variables/mesurades/metadades"
 STATION_DATA_URL = "/xema/v1/estacions/mesurades/{codiEstacio}/{any}/{mes}/{dia}"
 UVI_DATA_URL = "/pronostic/v1/uvi/{codi_municipi}"
+ALERTS_URL = "/pronostic/v2/smp/episodis-oberts?data={any}-{mes}-{dia}Z"

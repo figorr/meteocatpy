@@ -1,3 +1,22 @@
+## [0.0.17](https://github.com/figorr/meteocatpy/compare/v0.0.16...v0.0.17) (2024-12-29)
+
+
+### Bug Fixes
+
+* 0.0.17 ([ea316af](https://github.com/figorr/meteocatpy/commit/ea316aff268970420dce1c7337d8e7b45859f13c))
+* add alerts feature request ([b5f664c](https://github.com/figorr/meteocatpy/commit/b5f664c2b305130bf55cd9a88ac2c007443e1f67))
+* add alerts test ([72a95a6](https://github.com/figorr/meteocatpy/commit/72a95a66f39908831255c06a6361512c3efcaffb))
+* add alerts url ([1a61bdb](https://github.com/figorr/meteocatpy/commit/1a61bdbe919c45239278d80471d003660ffb53e8))
+* add info station url ([759f0db](https://github.com/figorr/meteocatpy/commit/759f0db95dcc00c8a99d269cdce1eadc7dfe4284))
+* add infostation feature request ([d30ec37](https://github.com/figorr/meteocatpy/commit/d30ec3796e4be27a2601abdbb7c1c50ada8fa485))
+* add quotes feature request ([012fba3](https://github.com/figorr/meteocatpy/commit/012fba30febd6ac76c46ac684ff2f5f25f520acd))
+* add quotes url ([27950fb](https://github.com/figorr/meteocatpy/commit/27950fbf3eb488566e2f5955cb7b8a53a63a77ee))
+* fix alerts test ([742a70e](https://github.com/figorr/meteocatpy/commit/742a70ed584dcc6febb66a3c1b9a3b85574ebd18))
+* fix description ([b41fe6a](https://github.com/figorr/meteocatpy/commit/b41fe6a23385d5fe0e445ad8453bf94ae4cdd623))
+* fix python version from 3.7 to 3.12 and asyncio_default_fixture_loop_scope ([08a8f2e](https://github.com/figorr/meteocatpy/commit/08a8f2ed5a6768f7aa01e2d9959372bc756e501c))
+* ignore alerts json file ([68abbf3](https://github.com/figorr/meteocatpy/commit/68abbf3bb20d4fdfadaf55c8774dec29aa699bcd))
+* new repo file structure ([a6d62b8](https://github.com/figorr/meteocatpy/commit/a6d62b8acca9cadaff96fc1631f71903e2925479))
+
 ## [0.0.16](https://github.com/figorr/meteocatpy/compare/v0.0.15...v0.0.16) (2024-12-28)
 
 

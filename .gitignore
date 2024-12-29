@@ -43,6 +43,7 @@ tests/files/station_*.json
 tests/files/variables.json
 tests/files/uvi_*.json
 tests/files/quotes.json
+tests/files/alerts.json
 
 # Archivos de pytest
 .coverage

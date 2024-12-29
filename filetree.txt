@@ -15,16 +15,20 @@
 └── meteocatpy/
     ├── README.md
     ├── __init__.py
+    ├── alerts.py
     ├── const.py
     ├── data.py
     ├── exceptions.py
     ├── forecast.py
     ├── helpers.py
+    ├── infostation.py
     ├── py.typed
+    ├── quotes.py
     ├── stations.py
     ├── symbols.py
     ├── town.py
     ├── townstations.py
+    ├── uvi.py
     ├── variables.py
     ├── version.py
 ├── package-lock.json
@@ -38,11 +42,15 @@
 └── tests/
     ├── data_test.py
     ├── import_test.py
+    ├── integration_test_alerts.py
     ├── integration_test_complete.py
     ├── integration_test_forecast.py
+    ├── integration_test_infostation.py
+    ├── integration_test_quotes.py
     ├── integration_test_station_data.py
     ├── integration_test_stations.py
     ├── integration_test_symbols.py
     ├── integration_test_town.py
     ├── integration_test_town_stations.py
+    ├── integration_test_uvi.py
     ├── integration_test_variables.py

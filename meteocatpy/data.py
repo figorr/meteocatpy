@@ -41,6 +41,17 @@ class MeteocatStationData:
         """
         now = datetime.now()
         return now.year, now.month, now.day
+    
+    @staticmethod
+    def get_previous_date():
+        """
+        Obtiene la fecha del día anterior en formato numérico.
+
+        Returns:
+            tuple: Año (YYYY), mes (MM), día (DD) como enteros.
+        """
+        yesterday = datetime.now() - timedelta(days=1)
+        return yesterday.year, yesterday.month, yesterday.day
 
     async def get_station_data(self, station_id: str):
         """
@@ -66,7 +77,7 @@ class MeteocatStationData:
                     # Gestionar errores según el código de estado
                     if response.status == 400:
                         error_data = await response.json()
-                        # Intentar extraer la última fecha válida del mensaje de error
+                        # Filtrar si el mensaje contiene una fecha válida
                         if "message" in error_data:
                             match = re.search(r'entre (\d{2}-\d{2}-\d{4}) i', error_data["message"])
                             if match:
@@ -82,6 +93,20 @@ class MeteocatStationData:
                                     raise UnknownAPIError(
                                         f"Failed with the valid date {last_valid_date}: {await new_response.text()}"
                                     )
+                    
+                        # Filtrar si el mensaje es "L'estació '<código>' no mesura la variable 'null'"
+                        if re.search(r"L'estaci\u00f3 '.*?' no mesura la variable 'null'", error_data.get("message", "")):
+                            any, mes, dia = self.get_previous_date()  # Obtener la fecha del día anterior
+                            new_url = f"{BASE_URL}{STATION_DATA_URL}".format(
+                                codiEstacio=station_id, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+                            )
+                            async with session.get(new_url, headers=self.headers) as new_response:
+                                if new_response.status == 200:
+                                    return await new_response.json()
+                                raise UnknownAPIError(
+                                    f"Failed with the previous date: {await new_response.text()}"
+                                )
+                        
                         raise BadRequestError(await response.json())
                     elif response.status == 403:
                         error_data = await response.json()

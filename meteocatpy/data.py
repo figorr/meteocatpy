@@ -1,7 +1,7 @@
 import aiohttp
 import logging
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from .variables import MeteocatVariables
 from .const import BASE_URL, STATION_DATA_URL
 from .exceptions import (

@@ -1,3 +1,13 @@
+## [0.0.18](https://github.com/figorr/meteocatpy/compare/v0.0.17...v0.0.18) (2025-01-08)
+
+
+### Bug Fixes
+
+* 0.0.18 ([bdc81d2](https://github.com/figorr/meteocatpy/commit/bdc81d2c4ada74478e66d376962bd2e7b01fe39b))
+* 0.0.19 ([2884a6f](https://github.com/figorr/meteocatpy/commit/2884a6ff7216f412e5144ba8a89a300f6b0a42c2))
+* fix error variable null ([cba0f9d](https://github.com/figorr/meteocatpy/commit/cba0f9d80c1b2a6e6f3ab8660b7ae703bfe4c148))
+* fix timedelta ([dc716ad](https://github.com/figorr/meteocatpy/commit/dc716ad3843f1e138ccab6ac7e01d406e13cf4a5))
+
 ## [0.0.17](https://github.com/figorr/meteocatpy/compare/v0.0.16...v0.0.17) (2024-12-29)
 
 

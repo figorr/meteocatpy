@@ -22,6 +22,7 @@
     ├── forecast.py
     ├── helpers.py
     ├── infostation.py
+    ├── lightning.py
     ├── py.typed
     ├── quotes.py
     ├── stations.py
@@ -46,6 +47,7 @@
     ├── integration_test_complete.py
     ├── integration_test_forecast.py
     ├── integration_test_infostation.py
+    ├── integration_test_lightning.py
     ├── integration_test_quotes.py
     ├── integration_test_station_data.py
     ├── integration_test_stations.py

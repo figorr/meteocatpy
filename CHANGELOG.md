@@ -1,3 +1,11 @@
+## [1.0.0](https://github.com/figorr/meteocatpy/compare/v0.0.20...v1.0.0) (2025-02-04)
+
+
+### Bug Fixes
+
+* 1.0.0 ([c237e77](https://github.com/figorr/meteocatpy/commit/c237e7736f3504f19a1bb2e39ed7edd3264de115))
+
+
 ## [0.0.21](https://github.com/figorr/meteocatpy/compare/v0.0.20...v0.0.21) (2025-02-04)
 
 

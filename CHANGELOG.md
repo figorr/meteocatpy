@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/figorr/meteocatpy/compare/v1.0.0...v1.0.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* 1.0.1 ([fc92ac1](https://github.com/figorr/meteocatpy/commit/fc92ac1fe40ff31cb0c38c5864d53209f42e128d))
+* fix lightning api call code ([9abc092](https://github.com/figorr/meteocatpy/commit/9abc092b6951051279887d8ab09e2551371ea3b8))
+
 ## [1.0.0](https://github.com/figorr/meteocatpy/compare/v0.0.20...v1.0.0) (2025-02-04)
 
 

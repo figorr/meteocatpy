@@ -2,7 +2,7 @@ import os
 import pytest
 import json
 from dotenv import load_dotenv
-from meteocatpy.lightning import MeteocatLightningData
+from meteocatpy.lightning import MeteocatLightning
 
 # Cargar variables desde el archivo .env
 load_dotenv()
@@ -18,7 +18,7 @@ assert REGION_CODI_TEST, "Region codi test is required"
 @pytest.mark.asyncio
 async def test_lightning():
     # Crear una instancia de MeteocatLightningData con la API Key
-    lightning_client = MeteocatLightningData(API_KEY)
+    lightning_client = MeteocatLightning(API_KEY)
 
     # Obtener los datos de rayos
     lightning_data = await lightning_client.get_lightning_data(REGION_CODI_TEST)
@@ -29,7 +29,7 @@ async def test_lightning():
     os.makedirs('tests/files', exist_ok=True)
     
     # Guardar los datos de rayos en un archivo JSON
-    with open(f'tests/files/lightning_{REGION_CODI_TEST}_data.json', 'w', encoding='utf-8') as f:
+    with open(f'tests/files/lightning_{REGION_CODI_TEST}.json', 'w', encoding='utf-8') as f:
         json.dump(lightning_data, f, ensure_ascii=False, indent=4)
     
     # Verificar que los datos de rayos sean una lista

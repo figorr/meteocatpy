@@ -14,12 +14,12 @@ from .exceptions import (
 
 _LOGGER = logging.getLogger(__name__)
 
-class MeteocatLightningData:
+class MeteocatLightning:
     """Clase para interactuar con los datos de rayos de la API de Meteocat."""
 
     def __init__(self, api_key: str):
         """
-        Inicializa la clase MeteocatStationData.
+        Inicializa la clase MeteocatLightning.
 
         Args:
             api_key (str): Clave de API para autenticar las solicitudes.
@@ -29,7 +29,6 @@ class MeteocatLightningData:
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
         }
-        self.variables = MeteocatVariables(api_key)
     
     @staticmethod
     def get_current_date():

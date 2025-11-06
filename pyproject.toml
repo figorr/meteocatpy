@@ -10,7 +10,7 @@ keywords = ['meteocatpy', 'meteocat']
 
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.14"
+python = ">=3.12,<4.0"
 requests = "^2.32.3"
 python-dotenv = "^1.0.1"
 simplejson = "^3.19.3"
@@ -21,7 +21,10 @@ aiofiles = "^24.1.0"
 voluptuous = "^0.15.2"
 geopy = "^2.4.1"
 tzdata = "^2024.2"
-aiohttp = ">=3.10.11,<4.0.0"
+aiohttp = [
+    {version = ">=3.10.11,<4.0.0", python = "<3.14"},
+    {version = ">=3.8.0", python = ">=3.14"}
+]
 diskcache = "^5.6.3"
 semantic-release = "^0.1.0"
 
@@ -69,4 +72,7 @@ pre-commit = "^3.3.1"
 pytest = "^8.3.3"
 pytest-asyncio = "^0.24.0"
 syrupy = "^4.7.2"
-aioresponses = "^0.7.7"
+# aioresponses = [
+#     {version = "^0.7.7", python = "<3.14"},
+#     {version = "^0.8.0", python = ">=3.14"}
+# ]

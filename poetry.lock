@@ -120,21 +120,6 @@ yarl = ">=1.17.0,<2.0"
 speedups = ["Brotli", "aiodns (>=3.2.0)", "brotlicffi"]
 
 [[package]]
-name = "aioresponses"
-version = "0.7.7"
-description = "Mock out requests made by ClientSession from aiohttp package"
-optional = false
-python-versions = "*"
-files = [
-    {file = "aioresponses-0.7.7-py2.py3-none-any.whl", hash = "sha256:6975f31fe5e7f2113a41bd387221f31854f285ecbc05527272cd8ba4c50764a3"},
-    {file = "aioresponses-0.7.7.tar.gz", hash = "sha256:66292f1d5c94a3cb984f3336d806446042adb17347d3089f2d3962dd6e5ba55a"},
-]
-
-[package.dependencies]
-aiohttp = ">=3.3.0,<4.0.0"
-packaging = ">=22.0"
-
-[[package]]
 name = "aiosignal"
 version = "1.3.1"
 description = "aiosignal: a list of registered asynchronous callbacks"
@@ -3309,5 +3294,5 @@ type = ["pytest-mypy"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.12,<3.14"
-content-hash = "6d509b52a264f5b0a35a2dd692d63c2c12cc8b866ba64f35779d1d2a6f64db2b"
+python-versions = ">=3.12,<4.0"
+content-hash = "8ef18586dfea205b5f593ad7ca036529093dcbc192da6907d2f7df63d53a0829"

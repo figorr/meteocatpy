@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/figorr/meteocatpy/compare/v1.0.1...v1.0.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* Python 3.14 full support (aiohttp 3.11.10) ([e228668](https://github.com/figorr/meteocatpy/commit/e22866820c6a1c1673e0ed8461a40eaf01d298f8))
+
 ## [1.0.1](https://github.com/figorr/meteocatpy/compare/v1.0.0...v1.0.1) (2025-02-05)
 
 

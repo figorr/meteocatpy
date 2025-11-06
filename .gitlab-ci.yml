@@ -33,7 +33,7 @@ github_job:
     - git remote set-url origin "$GH_REMOTE_URL"
     - git config --global user.name "$GIT_USER_NAME"
     - git config --global user.email "$GIT_USER_EMAIL"
-    - git push "https://x-access-token:${GH_TOKEN}@${GH_REMOTE_URL#https://}" master
+    - git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/figorr/meteocatpy.git"
   allow_failure: true
   only:
     - master

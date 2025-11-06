@@ -31,9 +31,11 @@ github_job:
   script:
     - git checkout master  # Asegurarse de estar en la rama master
     - git remote set-url origin "$GH_REMOTE_URL"  # Cambiar la URL para GitHub
+    - git config --global user.name "$GIT_USER_NAME"
+    - git config --global user.email "$GIT_USER_EMAIL"
     # - poetry run semantic-release version  # Generar nueva versión
     # - poetry run semantic-release publish  # Ejecutar el comando para publicar el release
-    - git push origin master  # Hacer push al repositorio de GitHub
+    - git push "https://x-access-token:${GH_TOKEN}@${GH_REMOTE_URL#https://}" master  # Hacer push al repositorio de GitHub
   allow_failure: true  # Opcional: evita que el pipeline falle completamente
   only:
     - master

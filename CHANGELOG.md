@@ -3,14 +3,7 @@
 
 ### Bug Fixes
 
-* 0.0.0 ([abdc578](https://github.com/figorr/meteocatpy/commit/abdc578e9bdede2a8063971a5627ee847998d7dd))
-* 1.0.3 ([1654af1](https://github.com/figorr/meteocatpy/commit/1654af1768a5ac2d133a3b1e5d9bc1d245e11b0b))
-* 1.0.4 ([bc4897e](https://github.com/figorr/meteocatpy/commit/bc4897e4c199a935b29f97bf522d3093c1fad6ab))
-* bump voluptuous to 0.16 for HA 2026.1 compatibility ([a5485e8](https://github.com/figorr/meteocatpy/commit/a5485e8667dcb302080ddea2f226be8c095f6417))
-* bump voluptuous to 0.16 for HA 2026.1 compatibility ([1002eec](https://github.com/figorr/meteocatpy/commit/1002eecac25afd661cb8f20ce442016ba3943f08))
-* Bump voluptuous to 0.16 for HA 2026.1 compatibility ([c0098a6](https://github.com/figorr/meteocatpy/commit/c0098a6822640e6bd1773836c395eef63c1b33aa))
-* fix version ([6867a78](https://github.com/figorr/meteocatpy/commit/6867a7818a975da4a92cd8050965577bfa313e73))
-* version ([3dbb99f](https://github.com/figorr/meteocatpy/commit/3dbb99f7ebf72af7d5c212170b3d14de22f11cf7))
+* bump voluptuous to 0.16 for HA 2026.1 compatibility
 
 ## [1.0.3](https://github.com/figorr/meteocatpy/compare/v1.0.2...v1.0.3) (2026-01-10)
 

@@ -1,3 +1,17 @@
+## [1.0.4](https://github.com/figorr/meteocatpy/compare/v1.0.3...v1.0.4) (2026-01-10)
+
+
+### Bug Fixes
+
+* Bump voluptuous to 0.16 for HA 2026.1 compatibility
+
+## [1.0.3](https://github.com/figorr/meteocatpy/compare/v1.0.2...v1.0.3) (2026-01-10)
+
+
+### Bug Fixes
+
+* Same as v1.0.2
+
 ## [1.0.2](https://github.com/figorr/meteocatpy/compare/v1.0.1...v1.0.2) (2025-11-06)
 
 

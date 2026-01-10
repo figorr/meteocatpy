@@ -18,7 +18,7 @@ setuptools = "^75.5.0"
 python-semantic-release = "^7.28.1"
 twine = ">=3,<4"
 aiofiles = "^24.1.0"
-voluptuous = "^0.16"
+voluptuous = ">=0.15.2"
 geopy = "^2.4.1"
 tzdata = "^2024.2"
 aiohttp = [

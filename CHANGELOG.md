@@ -1,3 +1,13 @@
+## [1.0.5](https://github.com/figorr/meteocatpy/compare/v1.0.4...v1.0.5) (2026-01-10)
+
+
+### Bug Fixes
+
+* 0.0.0 ([73e15b8](https://github.com/figorr/meteocatpy/commit/73e15b84a2e9576d0afefa174a7999901d0b6413))
+* update dependencies for HA 2026.1 compatibility ([74523fe](https://github.com/figorr/meteocatpy/commit/74523fee7dc6a8244ec1ef61fda32e04e5c09bd8))
+* update voluptuous for HA 2026.1 compatibility ([57d4003](https://github.com/figorr/meteocatpy/commit/57d400318652ce6fa6dd37a7e6c8abad4c8b834d))
+* v1.0.5 ([9a57b77](https://github.com/figorr/meteocatpy/commit/9a57b778ff160dfda9cf064e49d41ac6d5744f52))
+
 ## [1.0.4](https://github.com/figorr/meteocatpy/compare/v1.0.3...v1.0.4) (2026-01-09)
 
 

@@ -80,3 +80,4 @@ detox = "*"
 #     {version = "^0.7.7", python = "<3.14"},
 #     {version = "^0.8.0", python = ">=3.14"}
 # ]
+pytest-cov = "^7.1.0"

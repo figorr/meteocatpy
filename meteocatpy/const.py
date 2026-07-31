@@ -13,4 +13,4 @@ STATION_DATA_URL = "/xema/v1/estacions/mesurades/{codiEstacio}/{any}/{mes}/{dia}
 UVI_DATA_URL = "/pronostic/v1/uvi/{codi_municipi}"
 ALERTS_URL = "/pronostic/v2/smp/episodis-oberts?data={any}-{mes}-{dia}Z"
 LIGHTNING_URL = "/xdde/v1/informes/comarques/{codi_comarca}/{any}/{mes}/{dia}"
-ETO_URL = "/variables/cmv/6006/{any}/{mes}/{dia}?codiEstacio={codiEstacio}"
+ETO_URL = "/xema/v1/variables/cmv/6006/{any}/{mes}/{dia}?codiEstacio={codiEstacio}"

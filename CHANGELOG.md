@@ -1,3 +1,11 @@
+## [1.0.7](https://github.com/figorr/meteocatpy/compare/v1.0.6...v1.0.7) (2026-07-31)
+
+
+### Bug Fixes
+
+* add ETo URL get request ([ef07261](https://github.com/figorr/meteocatpy/commit/ef07261db59b096add55a66e89f7605622a95c43))
+* include ETo API GET data ([de5e39e](https://github.com/figorr/meteocatpy/commit/de5e39e43776bde1ce54d5bf770b37369440a6a6))
+
 ## [1.0.6](https://github.com/figorr/meteocatpy/compare/v1.0.5...v1.0.6) (2026-04-01)
 
 

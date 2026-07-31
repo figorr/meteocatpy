@@ -46,6 +46,7 @@ tests/files/uvi_*.json
 tests/files/quotes.json
 tests/files/alerts.json
 tests/files/lightning_*.json
+tests/files/eto_*.json
 
 # Archivos de pytest
 .coverage

@@ -18,6 +18,7 @@
     ├── alerts.py
     ├── const.py
     ├── data.py
+    ├── eto.py
     ├── exceptions.py
     ├── forecast.py
     ├── helpers.py
@@ -45,6 +46,7 @@
     ├── import_test.py
     ├── integration_test_alerts.py
     ├── integration_test_complete.py
+    ├── integration_test_eto.py
     ├── integration_test_forecast.py
     ├── integration_test_infostation.py
     ├── integration_test_lightning.py

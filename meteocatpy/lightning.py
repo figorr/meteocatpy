@@ -1,4 +1,6 @@
 import aiohttp
+
+from .helpers import session_context
 import logging
 import re
 from datetime import datetime, timedelta
@@ -17,7 +19,11 @@ _LOGGER = logging.getLogger(__name__)
 class MeteocatLightning:
     """Clase para interactuar con los datos de rayos de la API de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatLightning.
 
@@ -25,6 +31,7 @@ class MeteocatLightning:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
@@ -67,7 +74,7 @@ class MeteocatLightning:
             codi_comarca=region_id, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
         )
     
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

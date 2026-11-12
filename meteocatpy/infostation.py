@@ -1,11 +1,17 @@
 import aiohttp
+
+from .helpers import session_context
 from .const import BASE_URL, INFO_STATION_URL
 from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, InternalServerError, UnknownAPIError
 
 class MeteocatInfoStation:
     """Clase para interactuar con la lista de municipios de la API de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatTown.
 
@@ -13,6 +19,7 @@ class MeteocatInfoStation:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
@@ -28,7 +35,7 @@ class MeteocatInfoStation:
         url = f"{BASE_URL}{INFO_STATION_URL}".format(
             codi_estacio=station_id
         )
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

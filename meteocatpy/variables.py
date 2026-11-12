@@ -1,4 +1,6 @@
 import aiohttp
+
+from .helpers import session_context
 from diskcache import Cache
 import os
 from .const import BASE_URL, VARIABLES_URL
@@ -7,7 +9,11 @@ from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, I
 class MeteocatVariables:
     """Clase para interactuar con la lista de variables de la API de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatVariables.
 
@@ -15,6 +21,7 @@ class MeteocatVariables:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
@@ -30,7 +37,7 @@ class MeteocatVariables:
 
         # Hacer la solicitud a la API para obtener las variables
         url = f"{BASE_URL}{VARIABLES_URL}"
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

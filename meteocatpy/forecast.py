@@ -1,4 +1,6 @@
 import aiohttp
+
+from .helpers import session_context
 from .const import (
     BASE_URL,
     MUNICIPIS_HORA_URL,
@@ -15,7 +17,11 @@ from .exceptions import (
 class MeteocatForecast:
     """Clase para interactuar con las predicciones de la API de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatForecast.
 
@@ -23,6 +29,7 @@ class MeteocatForecast:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
@@ -38,7 +45,7 @@ class MeteocatForecast:
         Returns:
             dict: Respuesta JSON de la API.
         """
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

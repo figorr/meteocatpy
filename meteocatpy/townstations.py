@@ -1,4 +1,6 @@
 import aiohttp
+
+from .helpers import session_context
 from .stations import MeteocatStations  # Importamos la clase MeteocatStations
 from .const import BASE_URL, STATIONS_MUNICIPI_URL
 from .exceptions import (
@@ -15,7 +17,11 @@ class MeteocatTownStations:
     las estaciones representativas de un municipio para una variable específica.
     """
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatTownStations.
 
@@ -23,11 +29,12 @@ class MeteocatTownStations:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
         }
-        self.stations_service = MeteocatStations(api_key)  # Instancia de MeteocatStations
+        self.stations_service = MeteocatStations(api_key, session)  # Instancia de MeteocatStations
 
     async def get_town_stations(self, town_id: str, variable_id: str):
         """
@@ -52,7 +59,7 @@ class MeteocatTownStations:
             codi_municipi=town_id, codi_variable=variable_id
         )
 
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

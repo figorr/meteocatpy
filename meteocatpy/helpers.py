@@ -1,10 +1,14 @@
 """Meteocat Helpers."""
 
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import datetime
 from typing import Any
 import re
 import unicodedata
 from zoneinfo import ZoneInfo
+
+import aiohttp
 
 TZ_UTC = ZoneInfo("UTC")
 
@@ -44,3 +48,15 @@ def slugify(value: str, allow_unicode: bool = False) -> str:
         )
     value = re.sub(r"[^\w\s]", "-", value.lower())
     return re.sub(r"[-\s]+", "-", value).strip("-_")
+
+
+@asynccontextmanager
+async def session_context(
+    session: aiohttp.ClientSession | None,
+) -> AsyncIterator[aiohttp.ClientSession]:
+    """Yield the provided session or a temporary one."""
+    if session is not None:
+        yield session
+        return
+    async with aiohttp.ClientSession() as own_session:
+        yield own_session

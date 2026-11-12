@@ -1,4 +1,6 @@
 import aiohttp
+
+from .helpers import session_context
 from .const import BASE_URL, SYMBOLS_URL
 from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, InternalServerError, UnknownAPIError
 
@@ -6,7 +8,11 @@ from .exceptions import BadRequestError, ForbiddenError, TooManyRequestsError, I
 class MeteocatSymbols:
     """Clase para interactuar con la API de símbolos de Meteocat."""
 
-    def __init__(self, api_key: str):
+    def __init__(
+        self,
+        api_key: str,
+        session: aiohttp.ClientSession | None = None,
+    ):
         """
         Inicializa la clase MeteocatSymbols.
 
@@ -14,6 +20,7 @@ class MeteocatSymbols:
             api_key (str): Clave de API para autenticar las solicitudes.
         """
         self.api_key = api_key
+        self._session = session
         self.headers = {
             "Content-Type": "application/json",
             "X-Api-Key": self.api_key,
@@ -22,7 +29,7 @@ class MeteocatSymbols:
 
     async def fetch_symbols(self):
         url = f"{BASE_URL}{SYMBOLS_URL}"
-        async with aiohttp.ClientSession() as session:
+        async with session_context(self._session) as session:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:

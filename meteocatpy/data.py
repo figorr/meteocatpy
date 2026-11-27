@@ -1,9 +1,9 @@
 import aiohttp
 
-from .helpers import session_context
+from .helpers import extract_available_date, session_context
 import logging
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from .variables import MeteocatVariables
 from .const import BASE_URL, STATION_DATA_URL
 from .exceptions import (
@@ -46,7 +46,7 @@ class MeteocatStationData:
         Returns:
             tuple: Año (YYYY), mes (MM), día (DD) como enteros.
         """
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         return now.year, now.month, now.day
     
     @staticmethod
@@ -57,7 +57,7 @@ class MeteocatStationData:
         Returns:
             tuple: Año (YYYY), mes (MM), día (DD) como enteros.
         """
-        yesterday = datetime.now() - timedelta(days=1)
+        yesterday = datetime.now(timezone.utc) - timedelta(days=1)
         return yesterday.year, yesterday.month, yesterday.day
 
     async def get_station_data(self, station_id: str):
@@ -84,22 +84,23 @@ class MeteocatStationData:
                     # Gestionar errores según el código de estado
                     if response.status == 400:
                         error_data = await response.json()
-                        # Filtrar si el mensaje contiene una fecha válida
-                        if "message" in error_data:
-                            match = re.search(r'entre (\d{2}-\d{2}-\d{4}) i', error_data["message"])
-                            if match:
-                                last_valid_date = match.group(1)  # Captura la última fecha válida
-                                dia, mes, any = map(int, last_valid_date.split('-'))
-                                # Intentar nuevamente con la última fecha válida
-                                new_url = f"{BASE_URL}{STATION_DATA_URL}".format(
-                                    codiEstacio=station_id, any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+                        # Reintentar con la fecha válida más reciente del mensaje
+                        available_date = extract_available_date(
+                            error_data.get("message")
+                        )
+                        if available_date:
+                            new_url = f"{BASE_URL}{STATION_DATA_URL}".format(
+                                codiEstacio=station_id,
+                                any=available_date.year,
+                                mes=f"{available_date.month:02d}",
+                                dia=f"{available_date.day:02d}",
+                            )
+                            async with session.get(new_url, headers=self.headers) as new_response:
+                                if new_response.status == 200:
+                                    return await new_response.json()
+                                raise UnknownAPIError(
+                                    f"Failed with the valid date {available_date}: {await new_response.text()}"
                                 )
-                                async with session.get(new_url, headers=self.headers) as new_response:
-                                    if new_response.status == 200:
-                                        return await new_response.json()
-                                    raise UnknownAPIError(
-                                        f"Failed with the valid date {last_valid_date}: {await new_response.text()}"
-                                    )
                     
                         # Filtrar si el mensaje es "L'estació '<código>' no mesura la variable 'null'"
                         if re.search(r"L'estaci\u00f3 '.*?' no mesura la variable 'null'", error_data.get("message", "")):
@@ -114,7 +115,7 @@ class MeteocatStationData:
                                     f"Failed with the previous date: {await new_response.text()}"
                                 )
                         
-                        raise BadRequestError(await response.json())
+                        raise BadRequestError(error_data)
                     elif response.status == 403:
                         error_data = await response.json()
                         if error_data.get("message") == "Forbidden":

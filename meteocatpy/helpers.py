@@ -2,7 +2,7 @@
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
-from datetime import datetime
+from datetime import date, datetime, timezone
 from typing import Any
 import re
 import unicodedata
@@ -32,8 +32,41 @@ def get_current_datetime(tz: ZoneInfo = TZ_UTC, replace: bool = True) -> datetim
 
 
 def parse_api_timestamp(timestamp: str, tz: ZoneInfo = TZ_UTC) -> datetime:
-    """Parse API timestamp into datetime."""
-    return datetime.fromisoformat(timestamp).replace(tzinfo=tz)
+    """Parse an API timestamp, assuming a timezone only when it is naive."""
+    normalized = f"{timestamp[:-1]}+00:00" if timestamp.endswith("Z") else timestamp
+    parsed = datetime.fromisoformat(normalized)
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=tz)
+    return parsed
+
+
+_DATE_PATTERN = re.compile(r"\b(\d{2})-(\d{2})-(\d{4})\b")
+
+
+def extract_available_date(
+    message: str | None, today: date | None = None
+) -> date | None:
+    """Extract the most recent valid date from a Meteocat 400 message.
+
+    The API returns messages such as:
+    "La data 07-03-2017 no és vàlida. Els dies disponibles són:
+    19-04-2017, 20-04-2017 i 21-04-2017".
+    """
+    if not message:
+        return None
+
+    dates: list[date] = []
+    for day, month, year in _DATE_PATTERN.findall(message):
+        try:
+            dates.append(date(int(year), int(month), int(day)))
+        except ValueError:
+            continue
+    if not dates:
+        return None
+
+    reference = today or datetime.now(timezone.utc).date()
+    past_dates = [value for value in dates if value <= reference]
+    return max(past_dates or dates)
 
 
 def slugify(value: str, allow_unicode: bool = False) -> str:

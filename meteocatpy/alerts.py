@@ -1,9 +1,8 @@
 import aiohttp
 
-from .helpers import session_context
+from .helpers import extract_available_date, session_context
 import logging
-import re
-from datetime import datetime
+from datetime import datetime, timezone
 from .const import BASE_URL, ALERTS_URL
 from .exceptions import (
     BadRequestError,
@@ -44,7 +43,7 @@ class MeteocatAlerts:
         Returns:
             tuple: Año (YYYY), mes (MM), día (DD) como enteros.
         """
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         return now.year, now.month, now.day
 
     async def get_alerts(self):
@@ -73,23 +72,23 @@ class MeteocatAlerts:
                     # Gestionar errores según el código de estado
                     if response.status == 400:
                         error_data = await response.json()
-                        # Intentar extraer la última fecha válida del mensaje de error
-                        if "message" in error_data:
-                            match = re.search(r'entre (\d{2}-\d{2}-\d{4}) i', error_data["message"])
-                            if match:
-                                last_valid_date = match.group(1)  # Captura la última fecha válida
-                                dia, mes, any = map(int, last_valid_date.split('-'))
-                                # Intentar nuevamente con la última fecha válida
-                                new_url = f"{BASE_URL}{ALERTS_URL}".format(
-                                    any=any, mes=f"{mes:02d}", dia=f"{dia:02d}"
+                        # Reintentar con la fecha válida más reciente del mensaje
+                        available_date = extract_available_date(
+                            error_data.get("message")
+                        )
+                        if available_date:
+                            new_url = f"{BASE_URL}{ALERTS_URL}".format(
+                                any=available_date.year,
+                                mes=f"{available_date.month:02d}",
+                                dia=f"{available_date.day:02d}",
+                            )
+                            async with session.get(new_url, headers=self.headers) as new_response:
+                                if new_response.status == 200:
+                                    return await new_response.json()
+                                raise UnknownAPIError(
+                                    f"Failed with the valid date {available_date}: {await new_response.text()}"
                                 )
-                                async with session.get(new_url, headers=self.headers) as new_response:
-                                    if new_response.status == 200:
-                                        return await new_response.json()
-                                    raise UnknownAPIError(
-                                        f"Failed with the valid date {last_valid_date}: {await new_response.text()}"
-                                    )
-                        raise BadRequestError(await response.json())
+                        raise BadRequestError(error_data)
                     elif response.status == 403:
                         error_data = await response.json()
                         if error_data.get("message") == "Forbidden":

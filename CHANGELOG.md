@@ -1,3 +1,10 @@
+## [1.0.10](https://github.com/figorr/meteocatpy/compare/v1.0.9...v1.0.10) (2026-11-27)
+
+
+### Bug Fixes
+
+* use UTC dates for day-based API endpoints ([a736e94](https://github.com/figorr/meteocatpy/commit/a736e94be4e6860fb6efc026c4112051fbdfb50d))
+
 ## [1.0.7](https://github.com/figorr/meteocatpy/compare/v1.0.6...v1.0.7) (2026-07-31)
 
 
